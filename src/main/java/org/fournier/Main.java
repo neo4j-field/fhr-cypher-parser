@@ -30,23 +30,32 @@ public class Main {
 
         Statement testStatement = getStatement(testStatementString);
 
+
         //all labels
         List<String> labels = getLabels(testStatement);
-
-
-        //get label properties
-
-        getLabelProperties(testStatement);
 
     }
 
 
+    /***
+     * A method that returns a List of Cypher Strings from a file, split using CypherSplitUtil
+     * @param cypherFile
+     * @return List<String> Cypher Statements
+     */
     public static List<String> generateCypherStatements(Path cypherFile){
         List<String> cypherStatements = CypherSplitUtil.processFile(cypherFile, s -> s.split("(?m)^\\s*$"));
         return cypherStatements;
     }
 
 
+
+
+
+    /**
+     * A method that inputs the String statement and passes that to CypherParser.parse()
+     * @param statement
+     * @return
+     */
     public static Statement getStatement(String statement){
         StatementCollector statementCollector = new StatementCollector();
         Options options = Options.newOptions()
@@ -58,6 +67,7 @@ public class Main {
 
 
 
+
     public static List<String> getLabels(Statement statement){
         return statement.getCatalog().getNodeLabels()
                 .stream()
@@ -65,6 +75,13 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
+
+
+
+
+    /**
+     * !!!THE METHODS BELOW ARE EITHER INCOMPLETE OR IMPROPERLY IMPLEMENTED!!!
+     */
 
     /***
      * This method doesn't work because I don't think you can figure out relationship direction from statement.getCatalog
@@ -91,6 +108,7 @@ public class Main {
         return relationshipMap;
 
     }
+
 
 
     /***
@@ -121,12 +139,10 @@ public class Main {
 
         return labelPropertyMap;
 
-
-
-
-
-
-
     }
+
+
+
+
 
 }
