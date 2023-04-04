@@ -67,5 +67,11 @@ public class MainTest {
 
     }
 
+    @Test
+    public void testStatementCatalog(){
+        var tet = statement.getCatalog().getNodeLabels();
+        var tstt = statement.getCatalog().getProperties();
+    }
+
 
 }
